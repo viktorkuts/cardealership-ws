@@ -1,5 +1,10 @@
 USE `cardealership-db`;
 
+DROP TABLE IF EXISTS department_positions;
+DROP TABLE IF EXISTS departments;
+DROP TABLE IF EXISTS employee_phonenumbers;
+DROP TABLE IF EXISTS employees;
+
 create table if not exists department_positions (
     department_id INTEGER,
     title VARCHAR(50),
@@ -8,7 +13,7 @@ create table if not exists department_positions (
 
 create table if not exists departments (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    department_id VARCHAR(36),
+    department_id VARCHAR(36) UNIQUE,
     name VARCHAR(50),
     head_count INTEGER
 );
@@ -21,7 +26,7 @@ create table if not exists employee_phonenumbers (
 
 create table if not exists employees (
     id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    employee_id VARCHAR(36),
+    employee_id VARCHAR(36) UNIQUE,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email_address VARCHAR(50),

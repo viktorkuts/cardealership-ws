@@ -3,7 +3,6 @@ package com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
@@ -15,5 +14,9 @@ public class EmployeeIdentifier {
 
     public EmployeeIdentifier(){
         this.employeeId = UUID.randomUUID().toString();
+    }
+
+    public EmployeeIdentifier(String employeeId){
+        this.employeeId = employeeId;
     }
 }
