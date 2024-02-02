@@ -16,4 +16,8 @@ public class DepartmentIdentifier {
     public DepartmentIdentifier(){
         this.departmentId = UUID.randomUUID().toString();
     }
+
+    public DepartmentIdentifier(String departmentId){
+        this.departmentId = departmentId;
+    }
 }

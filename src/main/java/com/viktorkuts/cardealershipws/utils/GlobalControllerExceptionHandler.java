@@ -1,6 +1,7 @@
 package com.viktorkuts.cardealershipws.utils;
 
 import com.viktorkuts.cardealershipws.utils.exceptions.HttpErrorInfo;
+import com.viktorkuts.cardealershipws.utils.exceptions.InUseException;
 import com.viktorkuts.cardealershipws.utils.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,5 +23,11 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(NotFoundException.class)
     public HttpErrorInfo handleNotFound(WebRequest request, Exception ex){
         return createHttpErrorInfo(HttpStatus.NOT_FOUND, request, ex);
+    }
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(InUseException.class)
+    public HttpErrorInfo handleInUse(WebRequest request, Exception ex){
+        return createHttpErrorInfo(HttpStatus.UNPROCESSABLE_ENTITY, request, ex);
     }
 }
