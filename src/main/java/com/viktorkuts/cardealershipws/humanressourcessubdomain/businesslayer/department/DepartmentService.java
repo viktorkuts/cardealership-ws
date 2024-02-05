@@ -1,14 +1,14 @@
 package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.department;
 
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestDTO;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseDTO;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseModel;
 
 import java.util.List;
 
 public interface DepartmentService {
-    public List<DepartmentResponseDTO> getAllDepartments();
-    public DepartmentResponseDTO getDepartment(String departmentId);
-    public DepartmentResponseDTO addDepartment(DepartmentRequestDTO departmentRequestDTO);
-    public DepartmentResponseDTO updateDepartment(String departmentId, DepartmentRequestDTO departmentRequestDTO);
+    public List<DepartmentResponseModel> getAllDepartments();
+    public DepartmentResponseModel getDepartment(String departmentId);
+    public DepartmentResponseModel addDepartment(DepartmentRequestModel departmentRequestModel);
+    public DepartmentResponseModel updateDepartment(String departmentId, DepartmentRequestModel departmentRequestModel);
     public void deleteDepartment(String departmentId);
 }

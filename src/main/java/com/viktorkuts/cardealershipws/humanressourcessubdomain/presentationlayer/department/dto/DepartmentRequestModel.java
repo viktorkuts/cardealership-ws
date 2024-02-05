@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class DepartmentRequestDTO {
+public class DepartmentRequestModel {
     private String name;
     private Integer headCount;
     private List<Position> positions;

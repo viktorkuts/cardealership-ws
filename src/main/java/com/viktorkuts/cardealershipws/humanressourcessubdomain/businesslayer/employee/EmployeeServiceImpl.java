@@ -3,8 +3,8 @@ package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.em
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.Employee;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.EmployeeIdentifier;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.EmployeeRepository;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeRequestDTO;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeResponseDTO;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeResponseModel;
 import com.viktorkuts.cardealershipws.utils.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -22,45 +22,45 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public List<EmployeeResponseDTO> getAllEmployees(){
+    public List<EmployeeResponseModel> getAllEmployees(){
         List<Employee> employees = employeeRepository.findAll();
-        List<EmployeeResponseDTO> employeeResponseDTOs = new ArrayList<>();
+        List<EmployeeResponseModel> employeeResponseModels = new ArrayList<>();
         employees.forEach(employee -> {
-            EmployeeResponseDTO resDTO = new EmployeeResponseDTO();
+            EmployeeResponseModel resDTO = new EmployeeResponseModel();
             BeanUtils.copyProperties(employee, resDTO);
-            employeeResponseDTOs.add(resDTO);
+            employeeResponseModels.add(resDTO);
         });
-        return employeeResponseDTOs;
+        return employeeResponseModels;
     }
 
-    public EmployeeResponseDTO getEmployee(String employeeId){
+    public EmployeeResponseModel getEmployee(String employeeId){
         Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier(new EmployeeIdentifier(employeeId));
         if(foundEmployee == null){
             throw new NotFoundException("Unknown employeeId " + employeeId);
         }
-        EmployeeResponseDTO dto = new EmployeeResponseDTO();
+        EmployeeResponseModel dto = new EmployeeResponseModel();
         BeanUtils.copyProperties(foundEmployee, dto);
         return dto;
     }
 
-    public EmployeeResponseDTO addEmployee(EmployeeRequestDTO employeeRequestDTO){
+    public EmployeeResponseModel addEmployee(EmployeeRequestModel employeeRequestModel){
         Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeRequestDTO, employee);
+        BeanUtils.copyProperties(employeeRequestModel, employee);
         employee.setEmployeeIdentifier(new EmployeeIdentifier());
         employeeRepository.save(employee);
-        EmployeeResponseDTO resDTO = new EmployeeResponseDTO();
+        EmployeeResponseModel resDTO = new EmployeeResponseModel();
         BeanUtils.copyProperties(employee, resDTO);
         return resDTO;
     }
 
-    public EmployeeResponseDTO updateEmployee(String employeeId, EmployeeRequestDTO employeeRequestDTO){
+    public EmployeeResponseModel updateEmployee(String employeeId, EmployeeRequestModel employeeRequestModel){
         Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier(new EmployeeIdentifier(employeeId));
         if(foundEmployee == null){
             throw new NotFoundException("Unknown employeeId " + employeeId);
         }
-        BeanUtils.copyProperties(employeeRequestDTO, foundEmployee);
+        BeanUtils.copyProperties(employeeRequestModel, foundEmployee);
         employeeRepository.save(foundEmployee);
-        EmployeeResponseDTO resDTO = new EmployeeResponseDTO();
+        EmployeeResponseModel resDTO = new EmployeeResponseModel();
         BeanUtils.copyProperties(foundEmployee, resDTO);
         return resDTO;
     }

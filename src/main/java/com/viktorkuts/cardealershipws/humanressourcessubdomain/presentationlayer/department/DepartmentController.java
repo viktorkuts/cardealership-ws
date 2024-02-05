@@ -1,8 +1,8 @@
 package com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department;
 
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.department.DepartmentService;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestDTO;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseDTO;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,23 +19,23 @@ public class DepartmentController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<DepartmentResponseDTO>> getAll(){
+    public ResponseEntity<List<DepartmentResponseModel>> getAll(){
         return ResponseEntity.ok().body(departmentService.getAllDepartments());
     }
 
     @GetMapping("/{departmentId}")
-    public ResponseEntity<DepartmentResponseDTO> get(@PathVariable String departmentId){
+    public ResponseEntity<DepartmentResponseModel> get(@PathVariable String departmentId){
         return ResponseEntity.ok().body(departmentService.getDepartment(departmentId));
     }
 
     @PostMapping()
-    public ResponseEntity<DepartmentResponseDTO> add(@RequestBody DepartmentRequestDTO departmentRequestDTO){
-        return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentRequestDTO));
+    public ResponseEntity<DepartmentResponseModel> add(@RequestBody DepartmentRequestModel departmentRequestModel){
+        return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentRequestModel));
     }
 
     @PutMapping("/{departmentId}")
-    public ResponseEntity<DepartmentResponseDTO> update(@PathVariable String departmentId, @RequestBody DepartmentRequestDTO departmentRequestDTO){
-        return ResponseEntity.ok().body(departmentService.updateDepartment(departmentId, departmentRequestDTO));
+    public ResponseEntity<DepartmentResponseModel> update(@PathVariable String departmentId, @RequestBody DepartmentRequestModel departmentRequestModel){
+        return ResponseEntity.ok().body(departmentService.updateDepartment(departmentId, departmentRequestModel));
     }
 
     @DeleteMapping("/{departmentId}")

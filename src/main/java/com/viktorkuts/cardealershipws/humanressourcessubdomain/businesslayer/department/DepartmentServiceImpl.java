@@ -3,8 +3,8 @@ package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.de
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.Department;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.DepartmentIdentifier;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.DepartmentRepository;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestDTO;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseDTO;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseModel;
 import com.viktorkuts.cardealershipws.utils.exceptions.InUseException;
 import com.viktorkuts.cardealershipws.utils.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -22,42 +22,42 @@ public class DepartmentServiceImpl implements DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public List<DepartmentResponseDTO> getAllDepartments(){
+    public List<DepartmentResponseModel> getAllDepartments(){
         List<Department> departments = departmentRepository.findAll();
-        List<DepartmentResponseDTO> departmentResponseDTOs = new ArrayList<>();
+        List<DepartmentResponseModel> departmentResponseModels = new ArrayList<>();
         departments.forEach(department -> {
-            DepartmentResponseDTO resDTO = new DepartmentResponseDTO();
+            DepartmentResponseModel resDTO = new DepartmentResponseModel();
             BeanUtils.copyProperties(department, resDTO);
-            departmentResponseDTOs.add(resDTO);
+            departmentResponseModels.add(resDTO);
         });
-        return departmentResponseDTOs;
+        return departmentResponseModels;
     }
 
-    public DepartmentResponseDTO getDepartment(String departmentId){
+    public DepartmentResponseModel getDepartment(String departmentId){
         Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier(new DepartmentIdentifier(departmentId));
-        DepartmentResponseDTO resDTO = new DepartmentResponseDTO();
+        DepartmentResponseModel resDTO = new DepartmentResponseModel();
         BeanUtils.copyProperties(foundDepartment, resDTO);
         return resDTO;
     }
 
-    public DepartmentResponseDTO addDepartment(DepartmentRequestDTO departmentRequestDTO){
+    public DepartmentResponseModel addDepartment(DepartmentRequestModel departmentRequestModel){
         Department department = new Department();
         department.setDepartmentIdentifier(new DepartmentIdentifier());
-        BeanUtils.copyProperties(departmentRequestDTO, department);
+        BeanUtils.copyProperties(departmentRequestModel, department);
         departmentRepository.save(department);
-        DepartmentResponseDTO resDTO = new DepartmentResponseDTO();
+        DepartmentResponseModel resDTO = new DepartmentResponseModel();
         BeanUtils.copyProperties(department, resDTO);
         return resDTO;
     }
 
-    public DepartmentResponseDTO updateDepartment(String departmentId, DepartmentRequestDTO departmentRequestDTO){
+    public DepartmentResponseModel updateDepartment(String departmentId, DepartmentRequestModel departmentRequestModel){
         Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier(new DepartmentIdentifier(departmentId));
         if(foundDepartment == null){
             throw new NotFoundException("Unknown departmentId " + departmentId);
         }
-        BeanUtils.copyProperties(departmentRequestDTO, foundDepartment);
+        BeanUtils.copyProperties(departmentRequestModel, foundDepartment);
         departmentRepository.save(foundDepartment);
-        DepartmentResponseDTO resDTO = new DepartmentResponseDTO();
+        DepartmentResponseModel resDTO = new DepartmentResponseModel();
         BeanUtils.copyProperties(foundDepartment, resDTO);
         return resDTO;
     }
