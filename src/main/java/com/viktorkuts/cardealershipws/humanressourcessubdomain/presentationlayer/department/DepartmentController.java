@@ -1,8 +1,8 @@
 package com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department;
 
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.department.DepartmentService;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestModel;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.models.DepartmentRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.models.DepartmentResponseModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,17 +1,18 @@
-package com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto;
+package com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.models;
 
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.Address;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.EmployeeIdentifier;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.PhoneNumber;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
 @Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeResponseModel {
-    private String employeeId;
+public class EmployeeRequestModel {
     private Address address;
     private List<PhoneNumber> phoneNumbers;
     private String firstName;

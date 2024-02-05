@@ -3,8 +3,8 @@ package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.em
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.Employee;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.EmployeeIdentifier;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.employee.EmployeeRepository;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeRequestModel;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeResponseModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.models.EmployeeRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.models.EmployeeResponseModel;
 import com.viktorkuts.cardealershipws.utils.exceptions.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;

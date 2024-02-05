@@ -3,8 +3,8 @@ package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.de
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.Department;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.DepartmentIdentifier;
 import com.viktorkuts.cardealershipws.humanressourcessubdomain.dataaccesslayer.department.DepartmentRepository;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentRequestModel;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.dto.DepartmentResponseModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.models.DepartmentRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.department.models.DepartmentResponseModel;
 import com.viktorkuts.cardealershipws.utils.exceptions.InUseException;
 import com.viktorkuts.cardealershipws.utils.exceptions.NotFoundException;
 import org.springframework.beans.BeanUtils;

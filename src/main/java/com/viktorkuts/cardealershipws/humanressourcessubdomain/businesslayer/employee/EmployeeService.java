@@ -1,7 +1,7 @@
 package com.viktorkuts.cardealershipws.humanressourcessubdomain.businesslayer.employee;
 
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeRequestModel;
-import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.dto.EmployeeResponseModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.models.EmployeeRequestModel;
+import com.viktorkuts.cardealershipws.humanressourcessubdomain.presentationlayer.employee.models.EmployeeResponseModel;
 
 import java.util.List;
 
