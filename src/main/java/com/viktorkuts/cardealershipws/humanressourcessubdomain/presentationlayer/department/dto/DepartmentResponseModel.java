@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class DepartmentResponseModel {
-    private DepartmentIdentifier departmentIdentifier;
+    private String departmentId;
     private String name;
     private Integer headCount;
     private List<Position> positions;

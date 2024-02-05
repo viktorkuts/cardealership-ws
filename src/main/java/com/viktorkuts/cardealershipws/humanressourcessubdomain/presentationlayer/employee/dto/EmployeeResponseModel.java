@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class EmployeeResponseModel {
-    private EmployeeIdentifier employeeIdentifier;
+    private String employeeId;
     private Address address;
     private List<PhoneNumber> phoneNumbers;
     private String firstName;

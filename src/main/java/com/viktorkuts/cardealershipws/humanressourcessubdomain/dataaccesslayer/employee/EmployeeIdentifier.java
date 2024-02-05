@@ -16,7 +16,4 @@ public class EmployeeIdentifier {
         this.employeeId = UUID.randomUUID().toString();
     }
 
-    public EmployeeIdentifier(String employeeId){
-        this.employeeId = employeeId;
-    }
 }

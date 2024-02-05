@@ -28,17 +28,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         employees.forEach(employee -> {
             EmployeeResponseModel resDTO = new EmployeeResponseModel();
             BeanUtils.copyProperties(employee, resDTO);
+            resDTO.setEmployeeId(employee.getEmployeeIdentifier().getEmployeeId());
             employeeResponseModels.add(resDTO);
         });
         return employeeResponseModels;
     }
 
     public EmployeeResponseModel getEmployee(String employeeId){
-        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier(new EmployeeIdentifier(employeeId));
+        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier_EmployeeId(employeeId);
         if(foundEmployee == null){
             throw new NotFoundException("Unknown employeeId " + employeeId);
         }
         EmployeeResponseModel dto = new EmployeeResponseModel();
+        dto.setEmployeeId(foundEmployee.getEmployeeIdentifier().getEmployeeId());
         BeanUtils.copyProperties(foundEmployee, dto);
         return dto;
     }
@@ -49,23 +51,25 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setEmployeeIdentifier(new EmployeeIdentifier());
         employeeRepository.save(employee);
         EmployeeResponseModel resDTO = new EmployeeResponseModel();
+        resDTO.setEmployeeId(employee.getEmployeeIdentifier().getEmployeeId());
         BeanUtils.copyProperties(employee, resDTO);
         return resDTO;
     }
 
     public EmployeeResponseModel updateEmployee(String employeeId, EmployeeRequestModel employeeRequestModel){
-        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier(new EmployeeIdentifier(employeeId));
+        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier_EmployeeId(employeeId);
         if(foundEmployee == null){
             throw new NotFoundException("Unknown employeeId " + employeeId);
         }
         BeanUtils.copyProperties(employeeRequestModel, foundEmployee);
         employeeRepository.save(foundEmployee);
         EmployeeResponseModel resDTO = new EmployeeResponseModel();
+        resDTO.setEmployeeId(foundEmployee.getEmployeeIdentifier().getEmployeeId());
         BeanUtils.copyProperties(foundEmployee, resDTO);
         return resDTO;
     }
     public void deleteEmployee(String employeeId){
-        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier(new EmployeeIdentifier(employeeId));
+        Employee foundEmployee = employeeRepository.getEmployeeByEmployeeIdentifier_EmployeeId(employeeId);
         if(foundEmployee == null){
             throw new NotFoundException("Unknown employeeId " + employeeId);
         }

@@ -28,14 +28,16 @@ public class DepartmentServiceImpl implements DepartmentService {
         departments.forEach(department -> {
             DepartmentResponseModel resDTO = new DepartmentResponseModel();
             BeanUtils.copyProperties(department, resDTO);
+            resDTO.setDepartmentId(department.getDepartmentIdentifier().getDepartmentId());
             departmentResponseModels.add(resDTO);
         });
         return departmentResponseModels;
     }
 
     public DepartmentResponseModel getDepartment(String departmentId){
-        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier(new DepartmentIdentifier(departmentId));
+        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier_DepartmentId(departmentId);
         DepartmentResponseModel resDTO = new DepartmentResponseModel();
+        resDTO.setDepartmentId(foundDepartment.getDepartmentIdentifier().getDepartmentId());
         BeanUtils.copyProperties(foundDepartment, resDTO);
         return resDTO;
     }
@@ -46,24 +48,26 @@ public class DepartmentServiceImpl implements DepartmentService {
         BeanUtils.copyProperties(departmentRequestModel, department);
         departmentRepository.save(department);
         DepartmentResponseModel resDTO = new DepartmentResponseModel();
+        resDTO.setDepartmentId(department.getDepartmentIdentifier().getDepartmentId());
         BeanUtils.copyProperties(department, resDTO);
         return resDTO;
     }
 
     public DepartmentResponseModel updateDepartment(String departmentId, DepartmentRequestModel departmentRequestModel){
-        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier(new DepartmentIdentifier(departmentId));
+        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier_DepartmentId(departmentId);
         if(foundDepartment == null){
             throw new NotFoundException("Unknown departmentId " + departmentId);
         }
         BeanUtils.copyProperties(departmentRequestModel, foundDepartment);
         departmentRepository.save(foundDepartment);
         DepartmentResponseModel resDTO = new DepartmentResponseModel();
+        resDTO.setDepartmentId(foundDepartment.getDepartmentIdentifier().getDepartmentId());
         BeanUtils.copyProperties(foundDepartment, resDTO);
         return resDTO;
     }
 
     public void deleteDepartment(String departmentId){
-        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier(new DepartmentIdentifier(departmentId));
+        Department foundDepartment = departmentRepository.getDepartmentByDepartmentIdentifier_DepartmentId(departmentId);
         if(foundDepartment == null){
             throw new NotFoundException("Unknown departmentId " + departmentId);
         }
